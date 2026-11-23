@@ -1,0 +1,153 @@
+# ========================================================================
+# PLAYLISTVAULT: GITIGNORE CONFIGURATION
+# ========================================================================
+
+# ------------------------------------------------------------------------
+# 1. KEY FILES, CREDENTIALS, AND SENSITIVE SECRETS (MANDATORY)
+# ------------------------------------------------------------------------
+# Environment variable files (NEVER commit secrets or API keys)
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+# Whitelist the example environment template
+!.env.example
+
+# Private cryptographic keys & certificates
+*.pem
+*.key
+*.pkcs12
+*.pfx
+*.p12
+*.cer
+*.crt
+*.der
+*.csr
+
+# SSH keys & authorizations
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+known_hosts
+
+# Cloud & Service account credentials
+*.secret
+secrets.*
+credentials.json
+client_secret*.json
+service-account*.json
+serviceAccountKey*.json
+jwt.key
+auth-tokens.json
+token.json
+
+# Java Keystores & Android signing keys
+*.keystore
+*.jks
+
+# Database files & local dumps
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.sql.gz
+
+# ------------------------------------------------------------------------
+# 2. AUDIO BINARIES & ZIP ARCHIVES (PREVENT ACCIDENTAL COMMITS)
+# ------------------------------------------------------------------------
+# Audio files must remain in local IndexedDB only (Local-First Guarantee)
+*.mp3
+*.flac
+*.wav
+*.m4a
+*.ogg
+*.opus
+*.aac
+*.wma
+*.aiff
+*.alac
+
+# Generated ZIP archives & export bundles
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+*.rar
+
+# ------------------------------------------------------------------------
+# 3. DEPENDENCIES & PACKAGE MANAGERS
+# ------------------------------------------------------------------------
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/
+.yarn-cache/
+
+# ------------------------------------------------------------------------
+# 4. BUILD OUTPUTS & TEMPORARY CACHES
+# ------------------------------------------------------------------------
+dist/
+dist-ssr/
+build/
+out/
+.cache/
+.vite/
+.vite-temp/
+.parcel-cache/
+.turbo/
+
+# ------------------------------------------------------------------------
+# 5. TESTING, COVERAGE & LOGS
+# ------------------------------------------------------------------------
+coverage/
+*.lcov
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ------------------------------------------------------------------------
+# 6. SUPABASE CLI & BACKEND LOCAL STATE
+# ------------------------------------------------------------------------
+.temp/
+supabase/.temp/
+supabase/.branches/
+
+# ------------------------------------------------------------------------
+# 7. IDE & EDITOR SETTINGS
+# ------------------------------------------------------------------------
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swo
+*~
+
+# ------------------------------------------------------------------------
+# 8. OPERATING SYSTEM ARTIFACTS
+# ------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Scratch review prompt files
+\# PLAYLISTVAULT*.txt
+*.txt

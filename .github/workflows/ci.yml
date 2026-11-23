@@ -1,0 +1,54 @@
+name: CI Quality Gate
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck, Lint, Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Strict TypeScript Verification
+        run: pnpm run typecheck
+
+      - name: ESLint Code Quality Check
+        run: pnpm run lint
+
+      - name: Run Test Suite (Vitest)
+        run: pnpm run test
+
+      - name: Verify Production Build
+        run: pnpm run build
+        env:
+          # Provide mock build environment variables ensuring build succeeds without leaking secrets
+          VITE_SUPABASE_URL: "https://placeholder-project.supabase.co"
+          VITE_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.placeholder"
+          VITE_SPOTIFY_CLIENT_ID: "placeholder_client_id_0000000000"
+
+      # NOTE: Automatic deployment is intentionally disabled.
+      # Production release requires explicit human authorization and manual promotion.
